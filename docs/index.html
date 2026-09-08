@@ -373,38 +373,25 @@
 
   <hr />
 
-  <!-- ── Resolution × Priority matrix ── -->
+  <!-- ── Resolution × Priority pie chart ── -->
   <div class="stack" style="gap:12px; margin-bottom:28px">
     <div class="stack" style="gap:4px">
-      <h2>Resolved since Aug 1 — priority × resolution type</h2>
-      <p style="font-size:12px;color:var(--muted)">All 77 bugs resolved since the baseline, broken out by Jira priority and resolution.</p>
+      <h2>Resolved since Aug 1 — by resolution type</h2>
+      <p style="font-size:12px;color:var(--muted)">All 77 bugs resolved since the baseline, broken out by resolution type and priority.</p>
     </div>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Resolution type</th>
-            <th class="right">1. Blocker</th>
-            <th class="right">2. Critical</th>
-            <th class="right">3. Major</th>
-            <th class="right">4. Minor</th>
-            <th class="right">6. None</th>
-            <th class="right">Total</th>
-          </tr>
-        </thead>
-        <tbody id="matrix-body">
-          <tr><td>Fixed</td>             <td class="right">2</td><td class="right">7</td><td class="right">15</td><td class="right">3</td><td class="right">1</td><td class="right"><strong>28</strong></td></tr>
-          <tr><td>Done</td>              <td class="right">—</td><td class="right">—</td><td class="right">1</td> <td class="right">—</td><td class="right">—</td><td class="right"><strong>1</strong></td></tr>
-          <tr><td>Data Fixed</td>        <td class="right">—</td><td class="right">—</td><td class="right">1</td> <td class="right">—</td><td class="right">—</td><td class="right"><strong>1</strong></td></tr>
-          <tr><td>Incidentally Fixed</td><td class="right">—</td><td class="right">—</td><td class="right">2</td> <td class="right">—</td><td class="right">—</td><td class="right"><strong>2</strong></td></tr>
-          <tr><td>Deferred</td>          <td class="right">—</td><td class="right">—</td><td class="right">1</td> <td class="right">—</td><td class="right">—</td><td class="right"><strong>1</strong></td></tr>
-          <tr><td>Cannot Reproduce</td>  <td class="right">—</td><td class="right">—</td><td class="right">13</td><td class="right">11</td><td class="right">4</td><td class="right"><strong>28</strong></td></tr>
-          <tr><td>Won't Fix</td>         <td class="right">—</td><td class="right">1</td><td class="right">3</td> <td class="right">5</td><td class="right">—</td><td class="right"><strong>9</strong></td></tr>
-          <tr><td>By Design</td>         <td class="right">—</td><td class="right">1</td><td class="right">4</td> <td class="right">1</td><td class="right">—</td><td class="right"><strong>6</strong></td></tr>
-          <tr><td>More Info</td>         <td class="right">—</td><td class="right">—</td><td class="right">1</td> <td class="right">—</td><td class="right">—</td><td class="right"><strong>1</strong></td></tr>
-          <tr><td><strong>TOTAL</strong></td><td class="right"><strong>2</strong></td><td class="right"><strong>9</strong></td><td class="right"><strong>41</strong></td><td class="right"><strong>20</strong></td><td class="right"><strong>5</strong></td><td class="right"><strong>77</strong></td></tr>
-        </tbody>
-      </table>
+    <div class="grid-2" style="align-items:start">
+      <!-- Donut: by resolution type -->
+      <div class="chart-box">
+        <h3 style="margin-bottom:10px">By resolution type</h3>
+        <canvas id="resolutionPie" height="260"></canvas>
+        <div class="chart-caption">77 bugs resolved since Aug 1, 2026</div>
+      </div>
+      <!-- Donut: by priority -->
+      <div class="chart-box">
+        <h3 style="margin-bottom:10px">By priority</h3>
+        <canvas id="priorityPie" height="260"></canvas>
+        <div class="chart-caption">Blocker · Critical · Major · Minor · None</div>
+      </div>
     </div>
   </div>
 
@@ -504,6 +491,100 @@ new Chart(document.getElementById('barChart'), {
       ctx.fillStyle = DARK.green;
       ctx.font = '11px sans-serif';
       ctx.fillText('Target 20%', right - 72, yPos - 5);
+      ctx.restore();
+    },
+  }],
+});
+
+// ── Donut: resolution type breakdown ──
+new Chart(document.getElementById('resolutionPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Fixed', 'Done', 'Data Fixed', 'Incidentally Fixed', 'Deferred', 'Cannot Reproduce', "Won't Fix", 'By Design', 'More Info'],
+    datasets: [{
+      data: [28, 1, 1, 2, 1, 28, 9, 6, 1],
+      backgroundColor: [
+        DARK.green,
+        '#2ecc71',
+        '#27ae60',
+        '#1abc9c',
+        DARK.muted,
+        DARK.blue,
+        DARK.yellow,
+        DARK.red,
+        '#c0392b',
+      ],
+      borderColor: DARK.surface,
+      borderWidth: 2,
+      hoverOffset: 8,
+    }],
+  },
+  options: {
+    responsive: true,
+    cutout: '55%',
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { color: DARK.text, boxWidth: 12, padding: 10, font: { size: 11 } },
+      },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} bugs (${((ctx.parsed/77)*100).toFixed(1)}%)` } },
+    },
+  },
+  plugins: [{
+    id: 'centerRes',
+    afterDraw(chart) {
+      const { ctx, chartArea: { top, bottom, left, right } } = chart;
+      const cx = (left + right) / 2, cy = (top + bottom) / 2;
+      ctx.save();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = DARK.text;
+      ctx.font = 'bold 22px sans-serif';
+      ctx.fillText('77', cx, cy - 8);
+      ctx.fillStyle = DARK.muted;
+      ctx.font = '11px sans-serif';
+      ctx.fillText('resolved', cx, cy + 10);
+      ctx.restore();
+    },
+  }],
+});
+
+// ── Donut: priority breakdown ──
+new Chart(document.getElementById('priorityPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['1. Blocker', '2. Critical', '3. Major', '4. Minor', '6. None'],
+    datasets: [{
+      data: [2, 9, 41, 20, 5],
+      backgroundColor: [DARK.red, DARK.yellow, DARK.blue, DARK.green, DARK.muted],
+      borderColor: DARK.surface,
+      borderWidth: 2,
+      hoverOffset: 8,
+    }],
+  },
+  options: {
+    responsive: true,
+    cutout: '55%',
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { color: DARK.text, boxWidth: 12, padding: 10, font: { size: 11 } },
+      },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} bugs (${((ctx.parsed/77)*100).toFixed(1)}%)` } },
+    },
+  },
+  plugins: [{
+    id: 'centerPri',
+    afterDraw(chart) {
+      const { ctx, chartArea: { top, bottom, left, right } } = chart;
+      const cx = (left + right) / 2, cy = (top + bottom) / 2;
+      ctx.save();
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = DARK.text;
+      ctx.font = 'bold 22px sans-serif';
+      ctx.fillText('77', cx, cy - 8);
+      ctx.fillStyle = DARK.muted;
+      ctx.font = '11px sans-serif';
+      ctx.fillText('resolved', cx, cy + 10);
       ctx.restore();
     },
   }],
