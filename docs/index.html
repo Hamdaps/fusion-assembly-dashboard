@@ -232,6 +232,30 @@
 
   <hr />
 
+  <!-- ── Resolution × Priority pie chart ── -->
+  <div class="stack" style="gap:12px; margin-bottom:28px">
+    <div class="stack" style="gap:4px">
+      <h2>Resolved since Aug 1 — by resolution type</h2>
+      <p style="font-size:12px;color:var(--muted)">All 77 bugs resolved since the baseline, broken out by resolution type and priority.</p>
+    </div>
+    <div class="grid-2" style="align-items:start">
+      <!-- Donut: by resolution type -->
+      <div class="chart-box">
+        <h3 style="margin-bottom:10px">By resolution type</h3>
+        <canvas id="resolutionPie" height="260"></canvas>
+        <div class="chart-caption">77 bugs resolved since Aug 1, 2026</div>
+      </div>
+      <!-- Donut: by priority -->
+      <div class="chart-box">
+        <h3 style="margin-bottom:10px">By priority</h3>
+        <canvas id="priorityPie" height="260"></canvas>
+        <div class="chart-caption">Blocker · Critical · Major · Minor · None</div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
   <!-- ── Per-team progress bars ── -->
   <div class="stack" style="gap:20px; margin-bottom:28px">
     <h2>Per-team progress to target</h2>
@@ -368,30 +392,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-
-  <hr />
-
-  <!-- ── Resolution × Priority pie chart ── -->
-  <div class="stack" style="gap:12px; margin-bottom:28px">
-    <div class="stack" style="gap:4px">
-      <h2>Resolved since Aug 1 — by resolution type</h2>
-      <p style="font-size:12px;color:var(--muted)">All 77 bugs resolved since the baseline, broken out by resolution type and priority.</p>
-    </div>
-    <div class="grid-2" style="align-items:start">
-      <!-- Donut: by resolution type -->
-      <div class="chart-box">
-        <h3 style="margin-bottom:10px">By resolution type</h3>
-        <canvas id="resolutionPie" height="260"></canvas>
-        <div class="chart-caption">77 bugs resolved since Aug 1, 2026</div>
-      </div>
-      <!-- Donut: by priority -->
-      <div class="chart-box">
-        <h3 style="margin-bottom:10px">By priority</h3>
-        <canvas id="priorityPie" height="260"></canvas>
-        <div class="chart-caption">Blocker · Critical · Major · Minor · None</div>
-      </div>
     </div>
   </div>
 
