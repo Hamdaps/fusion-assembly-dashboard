@@ -1,0 +1,44 @@
+name: Sync Jira data
+
+on:
+  schedule:
+    # Top of every hour (UTC). GitHub queues cron on a best-effort basis and
+    # can delay a run by several minutes under load; it is not a hard guarantee.
+    - cron: '0 * * * *'
+  workflow_dispatch:        # lets you trigger a sync by hand from the Actions tab
+
+concurrency:
+  group: sync-jira
+  cancel-in-progress: false
+
+permissions:
+  contents: write           # needed to push the regenerated docs/data.json
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch Jira metrics
+        env:
+          JIRA_USERNAME: ${{ secrets.JIRA_USERNAME }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: python3 scripts/fetch_jira.py
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/data.json; then
+            echo "No change in Jira numbers — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json
+          git commit -m "Auto-sync Jira data ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+          git push

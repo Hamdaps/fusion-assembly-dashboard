@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-09-09T05:20:00Z",
+  "baseline_date": "2026-08-01",
+  "site": "https://autodesk.atlassian.net",
+  "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897",
+  "totals": {
+    "baseline": 295,
+    "target": 236,
+    "open": 255,
+    "incoming": 38,
+    "resolved": 77,
+    "pct": 13.6,
+    "to_go": 19,
+    "tone": "yellow"
+  },
+  "teams": [
+    { "name": "Ebony",  "baseline": 215, "target": 172, "open": 181, "incoming": 21, "resolved": 56, "pct": 15.8, "to_go": 9,  "status": "9 to go",    "tone": "yellow" },
+    { "name": "Pearl",  "baseline": 74,  "target": 59,  "open": 71,  "incoming": 15, "resolved": 16, "pct": 4.1,  "to_go": 12, "status": "12 to go",   "tone": "red" },
+    { "name": "Synora", "baseline": 4,   "target": 3,   "open": 1,   "incoming": 0,  "resolved": 3,  "pct": 75.0, "to_go": -2, "status": "Target met", "tone": "green" },
+    { "name": "Riva",   "baseline": 3,   "target": 2,   "open": 2,   "incoming": 2,  "resolved": 3,  "pct": 33.3, "to_go": 0,  "status": "Target met", "tone": "green" }
+  ],
+  "resolved_total": 77,
+  "resolved_fixed": 32,
+  "resolved_disposition": 45,
+  "resolved_by_resolution": [
+    { "label": "Cannot Reproduce",   "count": 28 },
+    { "label": "Fixed",              "count": 28 },
+    { "label": "Won't Fix",          "count": 9 },
+    { "label": "By Design",          "count": 6 },
+    { "label": "Incidentally Fixed", "count": 2 },
+    { "label": "Data Fixed",         "count": 1 },
+    { "label": "Deferred",           "count": 1 },
+    { "label": "Done",               "count": 1 },
+    { "label": "More info",          "count": 1 }
+  ],
+  "resolved_by_priority": [
+    { "label": "1. Blocker",  "count": 2 },
+    { "label": "2. Critical", "count": 9 },
+    { "label": "3. Major",    "count": 41 },
+    { "label": "4. Minor",    "count": 20 },
+    { "label": "6. None",     "count": 5 }
+  ]
+}
