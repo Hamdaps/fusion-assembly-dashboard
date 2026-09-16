@@ -1,52 +1,52 @@
 {
-  "generated_at": "2026-09-15T04:27:14Z",
+  "generated_at": "2026-09-16T04:40:24Z",
   "baseline_date": "2026-08-01",
   "site": "https://autodesk.atlassian.net",
   "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897",
   "totals": {
     "baseline": 295,
     "target": 236,
-    "open": 267,
-    "incoming": 54,
-    "resolved": 81,
-    "pct": 9.5,
-    "to_go": 31,
-    "tone": "red"
+    "open": 262,
+    "incoming": 56,
+    "resolved": 86,
+    "pct": 11.2,
+    "to_go": 26,
+    "tone": "yellow"
   },
   "teams": [
     {
       "name": "Ebony",
       "baseline": 215,
       "target": 172,
-      "open": 182,
-      "incoming": 30,
-      "resolved": 57,
-      "pct": 15.3,
-      "to_go": 10,
-      "status": "10 to go",
+      "open": 177,
+      "incoming": 32,
+      "resolved": 62,
+      "pct": 17.7,
+      "to_go": 5,
+      "status": "5 to go",
       "tone": "yellow"
     },
     {
       "name": "Pearl",
       "baseline": 74,
       "target": 59,
-      "open": 73,
-      "incoming": 20,
+      "open": 74,
+      "incoming": 21,
       "resolved": 19,
-      "pct": 1.4,
-      "to_go": 14,
-      "status": "14 to go",
+      "pct": 0.0,
+      "to_go": 15,
+      "status": "15 to go",
       "tone": "red"
     },
     {
       "name": "Synora",
       "baseline": 4,
       "target": 3,
-      "open": 2,
-      "incoming": 1,
+      "open": 1,
+      "incoming": 0,
       "resolved": 3,
-      "pct": 50.0,
-      "to_go": -1,
+      "pct": 75.0,
+      "to_go": -2,
       "status": "Target met",
       "tone": "green"
     },
@@ -63,9 +63,9 @@
       "tone": "red"
     }
   ],
-  "resolved_total": 81,
+  "resolved_total": 86,
   "resolved_fixed": 35,
-  "resolved_disposition": 46,
+  "resolved_disposition": 51,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
@@ -73,15 +73,15 @@
     },
     {
       "label": "Cannot Reproduce",
-      "count": 28
+      "count": 30
+    },
+    {
+      "label": "By Design",
+      "count": 10
     },
     {
       "label": "Won't Fix",
       "count": 9
-    },
-    {
-      "label": "By Design",
-      "count": 7
     },
     {
       "label": "Incidentally Fixed",
@@ -115,11 +115,11 @@
     },
     {
       "label": "3. Major",
-      "count": 43
+      "count": 47
     },
     {
       "label": "4. Minor",
-      "count": 20
+      "count": 21
     },
     {
       "label": "6. None",
