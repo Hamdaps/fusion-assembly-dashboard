@@ -72,6 +72,36 @@ def _post(path: str, payload: dict) -> dict:
         sys.exit(f"Could not reach {SITE}: {e.reason}")
 
 
+def _get(path: str) -> dict:
+    req = urllib.request.Request(
+        SITE + path,
+        headers={"Authorization": _auth_header(), "Accept": "application/json"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode())
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")[:300]
+        sys.exit(f"Jira API {e.code} on {path}\n{body}")
+    except urllib.error.URLError as e:
+        sys.exit(f"Could not reach {SITE}: {e.reason}")
+
+
+def verify_auth() -> None:
+    """Fail fast on bad credentials.
+
+    POST /rest/api/3/search/jql answers an unauthenticated request with HTTP 200
+    and an empty issues list instead of 401. Every count would then come back 0
+    and this script would cheerfully publish a dashboard reading "0 open, 100%
+    reduction, target met" -- which is exactly what happened on 2026-09-17.
+    GET /rest/api/3/myself does return 401, so probe that before querying.
+    """
+    me = _get("/rest/api/3/myself")
+    who = me.get("emailAddress") or me.get("accountId") or "unknown"
+    print(f"authenticated as {who}")
+
+
 def search(jql: str, fields: list[str] | None = None) -> list[dict]:
     """Page through every match. Exact counts, no approximate-count endpoint."""
     out: list[dict] = []
@@ -145,7 +175,18 @@ def tally(values: list[str], order: list[str] | None = None) -> list[dict]:
 
 
 def main() -> None:
+    verify_auth()
+
     combined = counts_for(None)
+
+    # Backstop for any other silent-empty failure: a zero combined backlog is
+    # never real for these four teams, so refuse to write rather than publish it.
+    if combined["open"] == 0:
+        sys.exit(
+            "Refusing to write data.json: combined open-bug count is 0.\n"
+            "That is the signature of an auth or JQL failure returning an empty\n"
+            "issue list, not a real empty backlog. Nothing was written."
+        )
 
     resolved_issues = search(
         f'{base_for(None)} AND resolutiondate >= "{BASELINE_DATE}"',
