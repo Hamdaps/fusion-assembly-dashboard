@@ -1,11 +1,22 @@
 name: Sync Jira data
 
 on:
-  schedule:
-    # Top of every hour (UTC). GitHub queues cron on a best-effort basis and
-    # can delay a run by several minutes under load; it is not a hard guarantee.
-    - cron: '0 * * * *'
-  workflow_dispatch:        # lets you trigger a sync by hand from the Actions tab
+  # The hourly schedule is DISABLED as of 2026-09-17.
+  #
+  # Basic-auth API tokens appear to be blocked for the autodesk.atlassian.net
+  # tenant: three separate freshly minted tokens were each rejected with 401 on
+  # Jira, Confluence and api.atlassian.com/me, while OAuth access to the same
+  # account works fine. So fetch_jira.py cannot authenticate, and since it now
+  # (correctly) aborts rather than writing zeros, every scheduled run would fail
+  # and email a failure notice without ever producing data.
+  #
+  # Re-enable by uncommenting the two lines below once the auth question is
+  # resolved with the Atlassian admins -- do not just mint another token, that
+  # has been tried three times.
+  #
+  # schedule:
+  #   - cron: '0 * * * *'
+  workflow_dispatch:        # still runnable on demand from the Actions tab
 
 concurrency:
   group: sync-jira
