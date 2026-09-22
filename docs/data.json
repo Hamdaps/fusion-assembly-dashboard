@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T06:28:37Z",
+  "generated_at": "2026-09-22T12:53:21Z",
   "baseline_date": "2026-08-01",
   "site": "https://autodesk.atlassian.net",
   "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897",
@@ -7,8 +7,8 @@
     "baseline": 295,
     "target": 236,
     "open": 261,
-    "incoming": 66,
-    "resolved": 96,
+    "incoming": 71,
+    "resolved": 102,
     "pct": 11.5,
     "to_go": 25,
     "tone": "yellow"
@@ -18,24 +18,24 @@
       "name": "Ebony",
       "baseline": 215,
       "target": 172,
-      "open": 174,
-      "incoming": 36,
-      "resolved": 67,
-      "pct": 19.1,
-      "to_go": 2,
-      "status": "2 to go",
-      "tone": "yellow"
+      "open": 171,
+      "incoming": 39,
+      "resolved": 72,
+      "pct": 20.5,
+      "to_go": -1,
+      "status": "Target met",
+      "tone": "green"
     },
     {
       "name": "Pearl",
       "baseline": 74,
       "target": 59,
-      "open": 65,
-      "incoming": 17,
+      "open": 68,
+      "incoming": 18,
       "resolved": 23,
-      "pct": 12.2,
-      "to_go": 6,
-      "status": "6 to go",
+      "pct": 8.1,
+      "to_go": 9,
+      "status": "9 to go",
       "tone": "yellow"
     },
     {
@@ -55,21 +55,21 @@
       "baseline": 3,
       "target": 2,
       "open": 20,
-      "incoming": 12,
-      "resolved": 4,
+      "incoming": 13,
+      "resolved": 5,
       "pct": -566.7,
       "to_go": 18,
       "status": "18 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 96,
-  "resolved_fixed": 42,
-  "resolved_disposition": 54,
+  "resolved_total": 102,
+  "resolved_fixed": 45,
+  "resolved_disposition": 57,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 36
+      "count": 37
     },
     {
       "label": "Cannot Reproduce",
@@ -77,19 +77,19 @@
     },
     {
       "label": "By Design",
-      "count": 12
+      "count": 14
     },
     {
       "label": "Won't Fix",
       "count": 9
     },
     {
-      "label": "Done",
-      "count": 3
+      "label": "Incidentally Fixed",
+      "count": 4
     },
     {
-      "label": "Incidentally Fixed",
-      "count": 2
+      "label": "Done",
+      "count": 3
     },
     {
       "label": "Deferred",
@@ -111,11 +111,11 @@
     },
     {
       "label": "2. Critical",
-      "count": 10
+      "count": 11
     },
     {
       "label": "3. Major",
-      "count": 53
+      "count": 57
     },
     {
       "label": "4. Minor",
