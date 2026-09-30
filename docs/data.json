@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-22T12:53:21Z",
+  "generated_at": "2026-09-30T07:04:00Z",
   "baseline_date": "2026-08-01",
   "site": "https://autodesk.atlassian.net",
   "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897",
   "totals": {
     "baseline": 295,
     "target": 236,
-    "open": 261,
-    "incoming": 71,
-    "resolved": 102,
-    "pct": 11.5,
-    "to_go": 25,
+    "open": 253,
+    "incoming": 92,
+    "resolved": 132,
+    "pct": 14.2,
+    "to_go": 17,
     "tone": "yellow"
   },
   "teams": [
@@ -18,35 +18,35 @@
       "name": "Ebony",
       "baseline": 215,
       "target": 172,
-      "open": 171,
-      "incoming": 39,
-      "resolved": 72,
-      "pct": 20.5,
-      "to_go": -1,
-      "status": "Target met",
+      "open": 170,
+      "incoming": 47,
+      "resolved": 81,
+      "pct": 20.9,
+      "to_go": -2,
+      "status": "At target",
       "tone": "green"
     },
     {
       "name": "Pearl",
       "baseline": 74,
       "target": 59,
-      "open": 68,
-      "incoming": 18,
-      "resolved": 23,
-      "pct": 8.1,
-      "to_go": 9,
-      "status": "9 to go",
+      "open": 66,
+      "incoming": 23,
+      "resolved": 30,
+      "pct": 10.8,
+      "to_go": 7,
+      "status": "7 to go",
       "tone": "yellow"
     },
     {
       "name": "Synora",
       "baseline": 4,
       "target": 3,
-      "open": 2,
+      "open": 1,
       "incoming": 1,
-      "resolved": 3,
-      "pct": 50.0,
-      "to_go": -1,
+      "resolved": 4,
+      "pct": 75.0,
+      "to_go": -2,
       "status": "Target met",
       "tone": "green"
     },
@@ -54,34 +54,34 @@
       "name": "Riva",
       "baseline": 3,
       "target": 2,
-      "open": 20,
-      "incoming": 13,
-      "resolved": 5,
-      "pct": -566.7,
-      "to_go": 18,
-      "status": "18 to go",
+      "open": 16,
+      "incoming": 21,
+      "resolved": 18,
+      "pct": -433.3,
+      "to_go": 14,
+      "status": "14 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 102,
-  "resolved_fixed": 45,
-  "resolved_disposition": 57,
+  "resolved_total": 132,
+  "resolved_fixed": 70,
+  "resolved_disposition": 62,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 37
+      "count": 59
     },
     {
       "label": "Cannot Reproduce",
-      "count": 30
+      "count": 32
     },
     {
       "label": "By Design",
-      "count": 14
+      "count": 15
     },
     {
       "label": "Won't Fix",
-      "count": 9
+      "count": 11
     },
     {
       "label": "Incidentally Fixed",
@@ -89,7 +89,7 @@
     },
     {
       "label": "Done",
-      "count": 3
+      "count": 6
     },
     {
       "label": "Deferred",
@@ -102,24 +102,28 @@
     {
       "label": "More info",
       "count": 1
+    },
+    {
+      "label": "Duplicate",
+      "count": 1
     }
   ],
   "resolved_by_priority": [
     {
       "label": "1. Blocker",
-      "count": 3
+      "count": 6
     },
     {
       "label": "2. Critical",
-      "count": 11
+      "count": 24
     },
     {
       "label": "3. Major",
-      "count": 57
+      "count": 71
     },
     {
       "label": "4. Minor",
-      "count": 23
+      "count": 24
     },
     {
       "label": "6. None",
