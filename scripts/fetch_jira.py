@@ -36,7 +36,9 @@ TEAM_CLAUSE = (
     '("Development Team" in (Ebony, Pearl, Synora, Riva) '
     'OR "ADSK Team" in (Ebony, Pearl, Synora, Riva))'
 )
-PRIORITY_ORDER = ["1. Blocker", "2. Critical", "3. Major", "4. Minor", "6. None"]
+# "0. Showstopper" is a real FUS priority; it first appeared in the resolved set
+# on 2026-10-01 and must sort ahead of Blocker, not fall through to the tail.
+PRIORITY_ORDER = ["0. Showstopper", "1. Blocker", "2. Critical", "3. Major", "4. Minor", "6. None"]
 # Resolutions that mean a code/data change actually shipped.
 FIX_RESOLUTIONS = {"Fixed", "Data Fixed", "Incidentally Fixed", "Done"}
 
