@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-01T13:38:33Z",
+  "generated_at": "2026-10-05T04:39:23Z",
   "baseline_date": "2026-08-01",
   "site": "https://autodesk.atlassian.net",
   "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897",
   "totals": {
     "baseline": 295,
     "target": 236,
-    "open": 245,
-    "incoming": 97,
-    "resolved": 146,
-    "pct": 16.9,
-    "to_go": 9,
+    "open": 247,
+    "incoming": 101,
+    "resolved": 148,
+    "pct": 16.3,
+    "to_go": 11,
     "tone": "yellow"
   },
   "teams": [
@@ -18,11 +18,11 @@
       "name": "Ebony",
       "baseline": 215,
       "target": 172,
-      "open": 166,
+      "open": 163,
       "incoming": 49,
-      "resolved": 88,
-      "pct": 22.8,
-      "to_go": -6,
+      "resolved": 90,
+      "pct": 24.2,
+      "to_go": -9,
       "status": "Past target",
       "tone": "green"
     },
@@ -30,46 +30,46 @@
       "name": "Pearl",
       "baseline": 74,
       "target": 59,
-      "open": 61,
-      "incoming": 23,
+      "open": 64,
+      "incoming": 25,
       "resolved": 35,
-      "pct": 17.6,
-      "to_go": 2,
-      "status": "2 to go",
+      "pct": 13.5,
+      "to_go": 5,
+      "status": "5 to go",
       "tone": "yellow"
     },
     {
       "name": "Synora",
       "baseline": 4,
       "target": 3,
-      "open": 3,
-      "incoming": 3,
+      "open": 4,
+      "incoming": 4,
       "resolved": 4,
-      "pct": 25.0,
-      "to_go": 0,
-      "status": "At target",
-      "tone": "green"
+      "pct": 0.0,
+      "to_go": 1,
+      "status": "1 to go",
+      "tone": "red"
     },
     {
       "name": "Riva",
       "baseline": 3,
       "target": 2,
-      "open": 15,
-      "incoming": 22,
+      "open": 16,
+      "incoming": 23,
       "resolved": 20,
-      "pct": -400.0,
-      "to_go": 13,
-      "status": "13 to go",
+      "pct": -433.3,
+      "to_go": 14,
+      "status": "14 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 146,
-  "resolved_fixed": 75,
-  "resolved_disposition": 71,
+  "resolved_total": 148,
+  "resolved_fixed": 76,
+  "resolved_disposition": 72,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 63
+      "count": 64
     },
     {
       "label": "Cannot Reproduce",
@@ -77,7 +77,7 @@
     },
     {
       "label": "By Design",
-      "count": 16
+      "count": 17
     },
     {
       "label": "Won't Fix",
@@ -123,11 +123,11 @@
     },
     {
       "label": "3. Major",
-      "count": 74
+      "count": 75
     },
     {
       "label": "4. Minor",
-      "count": 24
+      "count": 25
     },
     {
       "label": "6. None",
