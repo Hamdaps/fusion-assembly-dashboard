@@ -149,6 +149,16 @@
 
   /* ── footer ── */
   footer { margin-top: 48px; font-size: 11px; color: var(--muted); text-align: center; }
+
+  .baseline-switch { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .baseline-switch button {
+    font: inherit; font-size: 12px; cursor: pointer;
+    padding: 6px 12px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  }
+  .baseline-switch button.active {
+    border-color: var(--accent); color: var(--text); background: rgba(79,135,240,.12);
+  }
 </style>
 </head>
 <body>
@@ -158,13 +168,17 @@
   <div class="stack" style="gap:6px; margin-bottom:24px">
     <h1>Fusion Assembly Bug Reduction Dashboard</h1>
     <div class="meta">
-      <span>Baseline: Aug 1, 2026</span>
+      <span id="meta-baseline">Baseline: …</span>
       <span>·</span>
       <span>Target: 20% open backlog reduction</span>
       <span>·</span>
       <span>Teams: Ebony · Pearl · Synora · Riva</span>
       <span>·</span>
       <span id="sync-label">Loading…</span>
+    </div>
+    <div class="baseline-switch" role="tablist" aria-label="Baseline cycle">
+      <button type="button" id="btn-aug1" data-baseline="aug1">Aug 1 baseline</button>
+      <button type="button" id="btn-nov1" data-baseline="nov1">Nov 1 baseline</button>
     </div>
   </div>
 
@@ -177,7 +191,7 @@
   <div class="grid-4" style="margin-bottom:14px">
     <div class="card stack" style="gap:4px">
       <div class="stat-value" id="kpi-baseline">–</div>
-      <div class="stat-label">Aug 1 Baseline</div>
+      <div class="stat-label" id="kpi-baseline-label">Baseline</div>
     </div>
     <div class="card stack" style="gap:4px">
       <div class="stat-value" id="kpi-current">–</div>
@@ -201,11 +215,11 @@
     </div>
     <div class="card stack" style="gap:4px">
       <div class="stat-value" style="font-size:22px" id="kpi-incoming">–</div>
-      <div class="stat-label">Incoming Since Aug 1</div>
+      <div class="stat-label" id="kpi-incoming-label">Incoming</div>
     </div>
     <div class="card stack" style="gap:4px">
       <div class="stat-value tone-green" style="font-size:22px" id="kpi-resolved">–</div>
-      <div class="stat-label">Resolved Since Aug 1</div>
+      <div class="stat-label" id="kpi-resolved-label">Resolved</div>
     </div>
   </div>
 
@@ -220,7 +234,7 @@
   <!-- ── Resolution × Priority donuts ── -->
   <div class="stack" style="gap:12px; margin-bottom:28px">
     <div class="stack" style="gap:4px">
-      <h2>Resolved since Aug 1 — by resolution type</h2>
+      <h2 id="resolved-heading">Resolved — by resolution type</h2>
       <p style="font-size:12px;color:var(--muted)" id="resolved-blurb"></p>
     </div>
     <div class="grid-2" style="align-items:start">
@@ -268,7 +282,7 @@
         <thead>
           <tr>
             <th>Team</th>
-            <th class="right">Aug 1 Baseline</th>
+            <th class="right" id="th-baseline">Baseline</th>
             <th class="right">20% Target</th>
             <th class="right">Current Open</th>
             <th class="right">% Reduction</th>
@@ -323,6 +337,31 @@ const FALLBACK_COLORS = [DARK.purple, '#e67e22', '#16a085', '#8e44ad', '#d35400'
 
 const charts = {};
 const el = (id) => document.getElementById(id);
+
+const BASELINES = {
+  aug1: { file: 'data.json', param: 'aug1' },
+  nov1: { file: 'data-nov1.json', param: 'nov1' },
+};
+
+function activeBaseline() {
+  const p = new URLSearchParams(location.search).get('baseline');
+  return p === 'nov1' ? 'nov1' : 'aug1';
+}
+
+function setBaseline(key) {
+  const url = new URL(location.href);
+  if (key === 'aug1') url.searchParams.delete('baseline');
+  else url.searchParams.set('baseline', key);
+  history.replaceState(null, '', url);
+  for (const [k, cfg] of Object.entries(BASELINES)) {
+    el('btn-' + k).classList.toggle('active', k === key);
+  }
+  load();
+}
+
+function baselineLabel(d) {
+  return d.baseline_label || d.baseline_date;
+}
 const fmtDate = (iso) => new Date(iso).toLocaleString(undefined, {
   year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
 });
@@ -331,6 +370,24 @@ function toneClass(prefix, tone) { return prefix + '-' + (tone || 'yellow'); }
 
 function donut(canvasId, rows, total, centerLabel) {
   if (charts[canvasId]) charts[canvasId].destroy();
+  const canvas = el(canvasId);
+  if (!canvas) return;
+  const box = canvas.parentElement;
+  let note = box.querySelector('.empty-chart[data-for="' + canvasId + '"]');
+  if (!rows.length || total === 0) {
+    canvas.style.display = 'none';
+    if (!note) {
+      note = document.createElement('p');
+      note.className = 'empty-chart';
+      note.dataset.for = canvasId;
+      note.style.cssText = 'font-size:12px;color:var(--muted);text-align:center;padding:24px 0';
+      box.appendChild(note);
+    }
+    note.textContent = 'No resolved bugs in this baseline period yet.';
+    return;
+  }
+  canvas.style.display = '';
+  if (note) note.remove();
   let fb = 0;
   charts[canvasId] = new Chart(el(canvasId), {
     type: 'doughnut',
@@ -462,6 +519,15 @@ function teamTable(teams, tot) {
 
 function render(d) {
   const t = d.totals;
+  const bl = baselineLabel(d);
+  const since = ' since ' + bl;
+
+  el('meta-baseline').textContent = 'Baseline: ' + bl;
+  el('kpi-baseline-label').textContent = bl + ' baseline';
+  el('kpi-incoming-label').textContent = 'Incoming' + since;
+  el('kpi-resolved-label').textContent = 'Resolved' + since;
+  el('th-baseline').textContent = bl + ' baseline';
+  el('resolved-heading').textContent = 'Resolved' + since + ' — by resolution type';
 
   el('sync-label').textContent = 'Data synced: ' + fmtDate(d.generated_at);
   el('footer-sync').textContent = 'Last synced ' + fmtDate(d.generated_at);
@@ -481,17 +547,22 @@ function render(d) {
   }
 
   el('callout-title').textContent = t.to_go <= 0
-    ? 'Target met — ' + Math.abs(t.to_go) + ' below the 236 target'
+    ? 'Target met — ' + Math.abs(t.to_go) + ' below the ' + t.target + ' target'
     : t.to_go + ' more closures needed to hit target';
   el('callout-body').textContent =
     `Current: ${t.open} open · Target: ${t.target} · ${t.pct}% reduced of the required 20%`;
 
-  el('resolved-blurb').textContent =
-    `All ${d.resolved_total} bugs resolved since the baseline. ` +
-    `${d.resolved_fixed} involved a code or data change; ${d.resolved_disposition} were dispositions.`;
-  el('resolution-caption').textContent = `${d.resolved_total} bugs resolved since Aug 1, 2026`;
+  if (d.resolved_total === 0) {
+    el('resolved-blurb').textContent =
+      `No bugs resolved since ${bl} yet. Charts will populate after the first resolutions.`;
+  } else {
+    el('resolved-blurb').textContent =
+      `All ${d.resolved_total} bugs resolved since the baseline. ` +
+      `${d.resolved_fixed} involved a code or data change; ${d.resolved_disposition} were dispositions.`;
+  }
+  el('resolution-caption').textContent = `${d.resolved_total} bugs resolved since ${bl}`;
   el('bar-caption').textContent =
-    `Source: Jira FUS · Aug 1 baseline · ${fmtDate(d.generated_at)}`;
+    `Source: Jira FUS · ${bl} baseline · ${fmtDate(d.generated_at)}`;
 
   donut('resolutionPie', d.resolved_by_resolution, d.resolved_total, 'resolved');
   donut('priorityPie',   d.resolved_by_priority,   d.resolved_total, 'resolved');
@@ -501,19 +572,27 @@ function render(d) {
 }
 
 async function load() {
+  const key = activeBaseline();
+  for (const [k] of Object.entries(BASELINES)) {
+    el('btn-' + k).classList.toggle('active', k === key);
+  }
+  const file = BASELINES[key].file;
   try {
-    const res = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
+    const res = await fetch(file + '?v=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     render(await res.json());
     el('load-error').style.display = 'none';
   } catch (err) {
     el('load-error').style.display = '';
     el('load-error-detail').textContent =
-      String(err) + ' — showing nothing rather than stale numbers.';
+      String(err) + ' (' + file + ') — showing nothing rather than stale numbers.';
     el('sync-label').textContent = 'Sync failed';
   }
 }
 
+for (const btn of document.querySelectorAll('.baseline-switch button')) {
+  btn.addEventListener('click', () => setBaseline(btn.dataset.baseline));
+}
 load();
 // The GitHub Action republishes hourly; re-poll so a left-open tab stays current.
 setInterval(load, 10 * 60 * 1000);

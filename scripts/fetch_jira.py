@@ -24,12 +24,30 @@ SITE = os.environ.get("JIRA_SITE", "https://autodesk.atlassian.net").rstrip("/")
 USER = os.environ.get("JIRA_USERNAME")
 TOKEN = os.environ.get("JIRA_API_TOKEN")
 
-BASELINE_DATE = "2026-08-01"
-
-# Open-bug counts snapshotted on the baseline date. Historical facts: Jira cannot
+# Open-bug counts snapshotted on each baseline date. Historical facts: Jira cannot
 # recompute these, so they are pinned here and must not be derived at runtime.
-BASELINE = {"Ebony": 215, "Pearl": 74, "Synora": 4, "Riva": 3}
-BASELINE_TOTAL = 295  # combined query; 1 lower than sum(BASELINE) -- see README
+PROFILES = {
+    "aug1": {
+        "baseline_date": "2026-08-01",
+        "baseline_label": "Aug 1, 2026",
+        "baseline": {"Ebony": 215, "Pearl": 74, "Synora": 4, "Riva": 3},
+        "baseline_total": 295,  # combined query; 1 lower than sum(baseline) -- see README
+        "confluence_url": (
+            "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897"
+        ),
+        "out": "docs/data.json",
+    },
+    "nov1": {
+        "baseline_date": "2026-11-01",
+        "baseline_label": "Nov 1, 2026",
+        "baseline": {"Ebony": 159, "Pearl": 59, "Synora": 0, "Riva": 10},
+        "baseline_total": 227,
+        "confluence_url": (
+            "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1559498760"
+        ),
+        "out": "docs/data-nov1.json",
+    },
+}
 
 TEAMS = ["Ebony", "Pearl", "Synora", "Riva"]
 TEAM_CLAUSE = (
@@ -43,6 +61,11 @@ PRIORITY_ORDER = ["0. Showstopper", "1. Blocker", "2. Critical", "3. Major", "4.
 FIX_RESOLUTIONS = {"Fixed", "Data Fixed", "Incidentally Fixed", "Done"}
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+# Set in main() from the selected profile.
+BASELINE_DATE = ""
+BASELINE: dict[str, int] = {}
+BASELINE_TOTAL = 0
 OUT = ROOT / "docs" / "data.json"
 
 
@@ -148,9 +171,12 @@ def tone_for(pct: float, to_go: int) -> str:
 
 def build_team(name: str, c: dict) -> dict:
     baseline = BASELINE[name]
-    target = round(baseline * 0.8)
+    target = round(baseline * 0.8) if baseline else 0
     to_go = c["open"] - target
-    pct = round((baseline - c["open"]) / baseline * 100, 1)
+    if baseline:
+        pct = round((baseline - c["open"]) / baseline * 100, 1)
+    else:
+        pct = 100.0 if c["open"] == 0 else 0.0
     return {
         "name": name,
         "baseline": baseline,
@@ -176,7 +202,31 @@ def tally(values: list[str], order: list[str] | None = None) -> list[dict]:
     return [{"label": k, "count": counts[k]} for k in keys]
 
 
+def apply_profile(name: str) -> None:
+    global BASELINE_DATE, BASELINE, BASELINE_TOTAL, OUT
+    if name not in PROFILES:
+        sys.exit(f"Unknown baseline profile {name!r}; choose from {', '.join(PROFILES)}")
+    p = PROFILES[name]
+    BASELINE_DATE = p["baseline_date"]
+    BASELINE = dict(p["baseline"])
+    BASELINE_TOTAL = p["baseline_total"]
+    OUT = ROOT / p["out"]
+
+
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Regenerate dashboard data JSON from Jira")
+    parser.add_argument(
+        "--baseline",
+        choices=tuple(PROFILES),
+        default="aug1",
+        help="Baseline cycle (default: aug1)",
+    )
+    args = parser.parse_args()
+    profile = PROFILES[args.baseline]
+    apply_profile(args.baseline)
+
     verify_auth()
 
     combined = counts_for(None)
@@ -212,10 +262,9 @@ def main() -> None:
     data = {
         "generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "baseline_date": BASELINE_DATE,
+        "baseline_label": profile["baseline_label"],
         "site": SITE,
-        "confluence_url": (
-            "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897"
-        ),
+        "confluence_url": profile["confluence_url"],
         "totals": {
             "baseline": BASELINE_TOTAL,
             "target": target_total,

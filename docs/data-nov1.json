@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-11-01T05:45:00Z",
+  "baseline_date": "2026-11-01",
+  "baseline_label": "Nov 1, 2026",
+  "site": "https://autodesk.atlassian.net",
+  "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1559498760/Fusion+Assembly+Bug+Reduction+Dashboard+Nov+1+Baseline",
+  "totals": {
+    "baseline": 227,
+    "target": 182,
+    "open": 227,
+    "incoming": 0,
+    "resolved": 0,
+    "pct": 0.0,
+    "to_go": 45,
+    "tone": "red"
+  },
+  "teams": [
+    {
+      "name": "Ebony",
+      "baseline": 159,
+      "target": 127,
+      "open": 159,
+      "incoming": 0,
+      "resolved": 0,
+      "pct": 0.0,
+      "to_go": 32,
+      "status": "32 to go",
+      "tone": "red"
+    },
+    {
+      "name": "Pearl",
+      "baseline": 59,
+      "target": 47,
+      "open": 59,
+      "incoming": 0,
+      "resolved": 0,
+      "pct": 0.0,
+      "to_go": 12,
+      "status": "12 to go",
+      "tone": "red"
+    },
+    {
+      "name": "Synora",
+      "baseline": 0,
+      "target": 0,
+      "open": 0,
+      "incoming": 0,
+      "resolved": 0,
+      "pct": 100.0,
+      "to_go": 0,
+      "status": "Target met",
+      "tone": "green"
+    },
+    {
+      "name": "Riva",
+      "baseline": 10,
+      "target": 8,
+      "open": 10,
+      "incoming": 0,
+      "resolved": 0,
+      "pct": 0.0,
+      "to_go": 2,
+      "status": "2 to go",
+      "tone": "red"
+    }
+  ],
+  "resolved_total": 0,
+  "resolved_fixed": 0,
+  "resolved_disposition": 0,
+  "resolved_by_resolution": [],
+  "resolved_by_priority": []
+}

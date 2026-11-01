@@ -2,16 +2,21 @@
 
 Live at **https://hamdaps.github.io/fusion-assembly-dashboard/**
 
-Tracks the Aug 1, 2026 bug-reduction push for teams Ebony, Pearl, Synora and Riva
-in the Jira `FUS` project. Target: a 20% cut in the open bug backlog
-(295 → 236).
+Tracks bug-reduction pushes for teams Ebony, Pearl, Synora and Riva in the Jira
+`FUS` project. Target: a 20% cut in the open bug backlog from each baseline:
+
+- **Aug 1, 2026** — `docs/data.json` (295 → 236)
+- **Nov 1, 2026** — `docs/data-nov1.json` (227 → 182)
+
+The live site switches baselines via the header toggles or
+`?baseline=nov1` on the URL.
 
 ## How it works
 
 ```
 .github/workflows/sync-jira.yml   hourly cron ─┐
-scripts/fetch_jira.py             queries Jira ┴─> docs/data.json
-docs/index.html                   fetches data.json at load and renders
+scripts/fetch_jira.py             queries Jira ┴─> docs/data.json (+ data-nov1.json)
+docs/index.html                   fetches the selected baseline JSON at load
 ```
 
 `docs/index.html` holds **no numbers**. Every figure, chart and table row is
@@ -41,10 +46,9 @@ Stdlib only — no dependencies to install.
 
 ## Things that will bite you
 
-**The Aug 1 baselines are hardcoded.** `BASELINE` and `BASELINE_TOTAL` in
-`scripts/fetch_jira.py` are historical facts. Jira has no snapshot of what was
-open on Aug 1, so these cannot be recomputed — do not "fix" them to match a
-live query.
+**Baseline open counts are hardcoded.** `PROFILES` in `scripts/fetch_jira.py`
+pins the starting backlog for each cycle (`aug1`, `nov1`). Jira has no snapshot
+of what was open on those dates, so do not "fix" them to match a live query.
 
 **Team membership spans two custom fields.** A bug belongs to a team via
 `Development Team` *or* `ADSK Team`, and at least one bug carries a different
@@ -64,7 +68,9 @@ current open by 1–2.
 
 ## Related
 
-- Confluence page (narrative + history):
+- Confluence (Aug 1 baseline):
   https://autodesk.atlassian.net/wiki/spaces/F360/pages/1109491897
+- Confluence (Nov 1 baseline):
+  https://autodesk.atlassian.net/wiki/spaces/F360/pages/1559498760
 - `create-fab-jira-dashboard.sh` (in `~/Git-projects`) builds an equivalent
   native Jira dashboard.
