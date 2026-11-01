@@ -40,8 +40,9 @@ PROFILES = {
     "nov1": {
         "baseline_date": "2026-11-01",
         "baseline_label": "Nov 1, 2026",
-        "baseline": {"Ebony": 159, "Pearl": 59, "Synora": 0, "Riva": 10},
-        "baseline_total": 227,
+        "baseline": {"Ebony": 164, "Pearl": 59, "Synora": 0, "Riva": 12},
+        "baseline_total": 234,
+        "open_jql": 'filter = 139017 AND filter = "WG_Assembly"',
         "confluence_url": (
             "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1559498760"
         ),
@@ -66,6 +67,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASELINE_DATE = ""
 BASELINE: dict[str, int] = {}
 BASELINE_TOTAL = 0
+OPEN_JQL: str | None = None  # nov1: saved-filter scope; aug1: built from project/team clause
 OUT = ROOT / "docs" / "data.json"
 
 
@@ -146,6 +148,12 @@ def search(jql: str, fields: list[str] | None = None) -> list[dict]:
 
 
 def base_for(team: str | None) -> str:
+    if OPEN_JQL:
+        if team is None:
+            return OPEN_JQL
+        return (
+            f'{OPEN_JQL} AND ("Development Team" = {team} OR "ADSK Team" = {team})'
+        )
     if team is None:
         return f"project = FUS AND issuetype = Bug AND {TEAM_CLAUSE}"
     return (
@@ -156,8 +164,12 @@ def base_for(team: str | None) -> str:
 
 def counts_for(team: str | None) -> dict:
     b = base_for(team)
+    if OPEN_JQL:
+        open_jql = b
+    else:
+        open_jql = f"{b} AND resolution IS EMPTY"
     return {
-        "open": len(search(f"{b} AND resolution IS EMPTY")),
+        "open": len(search(open_jql)),
         "incoming": len(search(f'{b} AND created >= "{BASELINE_DATE}"')),
         "resolved": len(search(f'{b} AND resolutiondate >= "{BASELINE_DATE}"')),
     }
@@ -203,13 +215,14 @@ def tally(values: list[str], order: list[str] | None = None) -> list[dict]:
 
 
 def apply_profile(name: str) -> None:
-    global BASELINE_DATE, BASELINE, BASELINE_TOTAL, OUT
+    global BASELINE_DATE, BASELINE, BASELINE_TOTAL, OPEN_JQL, OUT
     if name not in PROFILES:
         sys.exit(f"Unknown baseline profile {name!r}; choose from {', '.join(PROFILES)}")
     p = PROFILES[name]
     BASELINE_DATE = p["baseline_date"]
     BASELINE = dict(p["baseline"])
     BASELINE_TOTAL = p["baseline_total"]
+    OPEN_JQL = p.get("open_jql")
     OUT = ROOT / p["out"]
 
 
