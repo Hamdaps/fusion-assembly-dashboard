@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T05:50:00Z",
+  "generated_at": "2026-11-02T05:25:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "site": "https://autodesk.atlassian.net",
@@ -10,7 +10,7 @@
     "target": 187,
     "open": 234,
     "incoming": 0,
-    "resolved": 0,
+    "resolved": 5,
     "pct": 0.0,
     "to_go": 47,
     "tone": "red"
@@ -22,7 +22,7 @@
       "target": 131,
       "open": 164,
       "incoming": 0,
-      "resolved": 0,
+      "resolved": 2,
       "pct": 0.0,
       "to_go": 33,
       "status": "33 to go",
@@ -32,12 +32,12 @@
       "name": "Pearl",
       "baseline": 59,
       "target": 47,
-      "open": 59,
+      "open": 58,
       "incoming": 0,
-      "resolved": 0,
-      "pct": 0.0,
-      "to_go": 12,
-      "status": "12 to go",
+      "resolved": 2,
+      "pct": 1.7,
+      "to_go": 11,
+      "status": "11 to go",
       "tone": "red"
     },
     {
@@ -56,18 +56,32 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 12,
+      "open": 13,
       "incoming": 0,
-      "resolved": 0,
-      "pct": 0.0,
-      "to_go": 2,
-      "status": "2 to go",
+      "resolved": 2,
+      "pct": -8.3,
+      "to_go": 3,
+      "status": "3 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 0,
-  "resolved_fixed": 0,
+  "resolved_total": 5,
+  "resolved_fixed": 5,
   "resolved_disposition": 0,
-  "resolved_by_resolution": [],
-  "resolved_by_priority": []
+  "resolved_by_resolution": [
+    {
+      "label": "Fixed",
+      "count": 5
+    }
+  ],
+  "resolved_by_priority": [
+    {
+      "label": "2. Critical",
+      "count": 1
+    },
+    {
+      "label": "3. Major",
+      "count": 4
+    }
+  ]
 }
