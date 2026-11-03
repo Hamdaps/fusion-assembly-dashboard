@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T12:25:00Z",
+  "generated_at": "2026-11-03T16:05:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 234,
-    "incoming": 0,
+    "open": 229,
+    "incoming": 3,
     "resolved": 5,
-    "pct": 0.0,
-    "to_go": 35,
+    "pct": 2.1,
+    "to_go": 30,
     "tone": "red"
   },
   "teams": [
@@ -21,24 +21,24 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 164,
-      "incoming": 0,
+      "open": 162,
+      "incoming": 1,
       "resolved": 2,
-      "pct": 0.0,
-      "to_go": 25,
-      "status": "25 to go",
+      "pct": 1.2,
+      "to_go": 23,
+      "status": "23 to go",
       "tone": "red"
     },
     {
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 58,
-      "incoming": 0,
-      "resolved": 2,
-      "pct": 1.7,
-      "to_go": 8,
-      "status": "8 to go",
+      "open": 56,
+      "incoming": 2,
+      "resolved": 1,
+      "pct": 5.1,
+      "to_go": 6,
+      "status": "6 to go",
       "tone": "red"
     },
     {
@@ -58,8 +58,8 @@
       "baseline": 12,
       "target": 10,
       "open": 13,
-      "incoming": 0,
-      "resolved": 2,
+      "incoming": 1,
+      "resolved": 3,
       "pct": -8.3,
       "to_go": 3,
       "status": "3 to go",
@@ -82,7 +82,11 @@
     },
     {
       "label": "3. Major",
-      "count": 4
+      "count": 3
+    },
+    {
+      "label": "4. Minor",
+      "count": 1
     }
   ]
 }
