@@ -6,7 +6,7 @@ Tracks bug-reduction pushes for teams Ebony, Pearl, Synora and Riva in the Jira
 `FUS` project. Target: a 20% cut in the open bug backlog from each baseline:
 
 - **Aug 1, 2026** — `docs/data.json` (295 → 236)
-- **Nov 1, 2026** — `docs/data-nov1.json` (234 → 187; open scope = Jira filters 139017 + `WG_Assembly`)
+- **Nov 1, 2026** — `docs/data-nov1.json` (234 → 199 at **15%** target; open scope = Jira filters 139017 + `WG_Assembly`)
 
 The live site switches baselines via the header toggles or
 `?baseline=nov1` on the URL.

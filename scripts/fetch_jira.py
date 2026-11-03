@@ -43,6 +43,8 @@ PROFILES = {
         "baseline": {"Ebony": 164, "Pearl": 59, "Synora": 0, "Riva": 12},
         "baseline_total": 234,
         "open_jql": 'filter = 139017 AND filter = "WG_Assembly"',
+        "target_multiplier": 0.85,
+        "reduction_target_pct": 15,
         "confluence_url": (
             "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1559498760"
         ),
@@ -68,6 +70,8 @@ BASELINE_DATE = ""
 BASELINE: dict[str, int] = {}
 BASELINE_TOTAL = 0
 OPEN_JQL: str | None = None  # nov1: saved-filter scope; aug1: built from project/team clause
+TARGET_MULTIPLIER = 0.8
+REDUCTION_TARGET_PCT = 20
 OUT = ROOT / "docs" / "data.json"
 
 
@@ -183,7 +187,7 @@ def tone_for(pct: float, to_go: int) -> str:
 
 def build_team(name: str, c: dict) -> dict:
     baseline = BASELINE[name]
-    target = round(baseline * 0.8) if baseline else 0
+    target = round(baseline * TARGET_MULTIPLIER) if baseline else 0
     to_go = c["open"] - target
     if baseline:
         pct = round((baseline - c["open"]) / baseline * 100, 1)
@@ -215,7 +219,7 @@ def tally(values: list[str], order: list[str] | None = None) -> list[dict]:
 
 
 def apply_profile(name: str) -> None:
-    global BASELINE_DATE, BASELINE, BASELINE_TOTAL, OPEN_JQL, OUT
+    global BASELINE_DATE, BASELINE, BASELINE_TOTAL, OPEN_JQL, TARGET_MULTIPLIER, REDUCTION_TARGET_PCT, OUT
     if name not in PROFILES:
         sys.exit(f"Unknown baseline profile {name!r}; choose from {', '.join(PROFILES)}")
     p = PROFILES[name]
@@ -223,6 +227,8 @@ def apply_profile(name: str) -> None:
     BASELINE = dict(p["baseline"])
     BASELINE_TOTAL = p["baseline_total"]
     OPEN_JQL = p.get("open_jql")
+    TARGET_MULTIPLIER = p.get("target_multiplier", 0.8)
+    REDUCTION_TARGET_PCT = p.get("reduction_target_pct", 20)
     OUT = ROOT / p["out"]
 
 
@@ -266,7 +272,7 @@ def main() -> None:
     priorities = [field_name(i, "priority") for i in resolved_issues]
     fixed_count = sum(1 for r in resolutions if r in FIX_RESOLUTIONS)
 
-    target_total = round(BASELINE_TOTAL * 0.8)
+    target_total = round(BASELINE_TOTAL * TARGET_MULTIPLIER)
     to_go_total = combined["open"] - target_total
     pct_total = round((BASELINE_TOTAL - combined["open"]) / BASELINE_TOTAL * 100, 1)
 
@@ -276,6 +282,7 @@ def main() -> None:
         "generated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "baseline_date": BASELINE_DATE,
         "baseline_label": profile["baseline_label"],
+        "reduction_target_pct": REDUCTION_TARGET_PCT,
         "site": SITE,
         "confluence_url": profile["confluence_url"],
         "totals": {

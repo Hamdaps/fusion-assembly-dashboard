@@ -1,43 +1,44 @@
 {
-  "generated_at": "2026-11-02T05:25:00Z",
+  "generated_at": "2026-11-03T12:25:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
+  "reduction_target_pct": 15,
   "site": "https://autodesk.atlassian.net",
   "confluence_url": "https://autodesk.atlassian.net/wiki/spaces/F360/pages/1559498760/Fusion+Assembly+Bug+Reduction+Dashboard+Nov+1+Baseline",
   "open_jql": "filter = 139017 AND filter = \"WG_Assembly\"",
   "totals": {
     "baseline": 234,
-    "target": 187,
+    "target": 199,
     "open": 234,
     "incoming": 0,
     "resolved": 5,
     "pct": 0.0,
-    "to_go": 47,
+    "to_go": 35,
     "tone": "red"
   },
   "teams": [
     {
       "name": "Ebony",
       "baseline": 164,
-      "target": 131,
+      "target": 139,
       "open": 164,
       "incoming": 0,
       "resolved": 2,
       "pct": 0.0,
-      "to_go": 33,
-      "status": "33 to go",
+      "to_go": 25,
+      "status": "25 to go",
       "tone": "red"
     },
     {
       "name": "Pearl",
       "baseline": 59,
-      "target": 47,
+      "target": 50,
       "open": 58,
       "incoming": 0,
       "resolved": 2,
       "pct": 1.7,
-      "to_go": 11,
-      "status": "11 to go",
+      "to_go": 8,
+      "status": "8 to go",
       "tone": "red"
     },
     {

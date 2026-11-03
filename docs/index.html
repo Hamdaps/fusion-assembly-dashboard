@@ -170,7 +170,7 @@
     <div class="meta">
       <span id="meta-baseline">Baseline: …</span>
       <span>·</span>
-      <span>Target: 20% open backlog reduction</span>
+      <span id="meta-target">Target: 20% open backlog reduction</span>
       <span>·</span>
       <span>Teams: Ebony · Pearl · Synora · Riva</span>
       <span>·</span>
@@ -199,7 +199,7 @@
     </div>
     <div class="card stack" style="gap:4px">
       <div class="stat-value" id="kpi-pct">–</div>
-      <div class="stat-label">% Reduction (need 20%)</div>
+      <div class="stat-label" id="kpi-pct-label">% Reduction (need 20%)</div>
     </div>
     <div class="card stack" style="gap:4px">
       <div class="stat-value" id="kpi-gap">–</div>
@@ -211,7 +211,7 @@
   <div class="grid-3" style="margin-bottom:24px">
     <div class="card stack" style="gap:4px">
       <div class="stat-value" style="font-size:22px" id="kpi-target">–</div>
-      <div class="stat-label">20% Target</div>
+      <div class="stat-label" id="kpi-target-label">20% Target</div>
     </div>
     <div class="card stack" style="gap:4px">
       <div class="stat-value" style="font-size:22px" id="kpi-incoming">–</div>
@@ -283,7 +283,7 @@
           <tr>
             <th>Team</th>
             <th class="right" id="th-baseline">Baseline</th>
-            <th class="right">20% Target</th>
+            <th class="right" id="th-target">20% Target</th>
             <th class="right">Current Open</th>
             <th class="right">% Reduction</th>
             <th class="right">Incoming</th>
@@ -428,8 +428,13 @@ function donut(canvasId, rows, total, centerLabel) {
   });
 }
 
-function barChart(teams) {
+function reductionTargetPct(d) {
+  return d.reduction_target_pct ?? 20;
+}
+
+function barChart(teams, targetPct) {
   if (charts.barChart) charts.barChart.destroy();
+  const goal = targetPct ?? 20;
   charts.barChart = new Chart(el('barChart'), {
     type: 'bar',
     data: {
@@ -458,13 +463,14 @@ function barChart(teams) {
       id: 'targetLine',
       afterDraw(chart) {
         const { ctx, chartArea: { left, right }, scales: { y } } = chart;
-        const yPos = y.getPixelForValue(20);
+        const yPos = y.getPixelForValue(goal);
         ctx.save();
         ctx.setLineDash([5, 4]);
         ctx.strokeStyle = DARK.green; ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(left, yPos); ctx.lineTo(right, yPos); ctx.stroke();
         ctx.fillStyle = DARK.green; ctx.font = '11px sans-serif';
-        ctx.fillText('Target 20%', right - 72, yPos - 5);
+        const label = 'Target ' + goal + '%';
+        ctx.fillText(label, right - (8 + label.length * 6), yPos - 5);
         ctx.restore();
       },
     }],
@@ -521,6 +527,12 @@ function render(d) {
   const t = d.totals;
   const bl = baselineLabel(d);
   const since = ' since ' + bl;
+  const goal = reductionTargetPct(d);
+
+  el('meta-target').textContent = 'Target: ' + goal + '% open backlog reduction';
+  el('kpi-pct-label').textContent = '% Reduction (need ' + goal + '%)';
+  el('kpi-target-label').textContent = goal + '% Target';
+  el('th-target').textContent = goal + '% Target';
 
   el('meta-baseline').textContent = 'Baseline: ' + bl;
   el('kpi-baseline-label').textContent = bl + ' baseline';
@@ -550,7 +562,7 @@ function render(d) {
     ? 'Target met — ' + Math.abs(t.to_go) + ' below the ' + t.target + ' target'
     : t.to_go + ' more closures needed to hit target';
   el('callout-body').textContent =
-    `Current: ${t.open} open · Target: ${t.target} · ${t.pct}% reduced of the required 20%`;
+    `Current: ${t.open} open · Target: ${t.target} · ${t.pct}% reduced of the required ${goal}%`;
 
   if (d.resolved_total === 0) {
     el('resolved-blurb').textContent =
@@ -566,7 +578,7 @@ function render(d) {
 
   donut('resolutionPie', d.resolved_by_resolution, d.resolved_total, 'resolved');
   donut('priorityPie',   d.resolved_by_priority,   d.resolved_total, 'resolved');
-  barChart(d.teams);
+  barChart(d.teams, goal);
   teamBars(d.teams);
   teamTable(d.teams, t);
 }
