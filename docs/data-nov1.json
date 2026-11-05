@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T04:35:00Z",
+  "generated_at": "2026-11-05T04:25:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 227,
-    "incoming": 3,
+    "open": 230,
+    "incoming": 5,
     "resolved": 3,
-    "pct": 3.0,
-    "to_go": 28,
+    "pct": 1.7,
+    "to_go": 31,
     "tone": "red"
   },
   "teams": [
@@ -21,12 +21,12 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 161,
+      "open": 163,
       "incoming": 1,
       "resolved": 1,
-      "pct": 1.8,
-      "to_go": 22,
-      "status": "22 to go",
+      "pct": 0.6,
+      "to_go": 24,
+      "status": "24 to go",
       "tone": "red"
     },
     {
@@ -34,7 +34,7 @@
       "baseline": 59,
       "target": 50,
       "open": 56,
-      "incoming": 2,
+      "incoming": 4,
       "resolved": 1,
       "pct": 5.1,
       "to_go": 6,
@@ -57,12 +57,12 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 11,
-      "incoming": 1,
+      "open": 12,
+      "incoming": 0,
       "resolved": 1,
-      "pct": 8.3,
-      "to_go": 1,
-      "status": "1 to go",
+      "pct": 0.0,
+      "to_go": 2,
+      "status": "2 to go",
       "tone": "red"
     }
   ],
