@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T04:25:00Z",
+  "generated_at": "2026-11-06T04:10:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 230,
-    "incoming": 5,
-    "resolved": 3,
-    "pct": 1.7,
-    "to_go": 31,
+    "open": 229,
+    "incoming": 7,
+    "resolved": 2,
+    "pct": 2.1,
+    "to_go": 30,
     "tone": "red"
   },
   "teams": [
@@ -21,24 +21,24 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 163,
-      "incoming": 1,
-      "resolved": 1,
-      "pct": 0.6,
-      "to_go": 24,
-      "status": "24 to go",
+      "open": 159,
+      "incoming": 2,
+      "resolved": 0,
+      "pct": 3.0,
+      "to_go": 20,
+      "status": "20 to go",
       "tone": "red"
     },
     {
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 56,
-      "incoming": 4,
+      "open": 58,
+      "incoming": 5,
       "resolved": 1,
-      "pct": 5.1,
-      "to_go": 6,
-      "status": "6 to go",
+      "pct": 1.7,
+      "to_go": 8,
+      "status": "8 to go",
       "tone": "red"
     },
     {
@@ -57,29 +57,25 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 12,
+      "open": 13,
       "incoming": 0,
       "resolved": 1,
-      "pct": 0.0,
-      "to_go": 2,
-      "status": "2 to go",
+      "pct": -8.3,
+      "to_go": 3,
+      "status": "3 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 3,
-  "resolved_fixed": 3,
+  "resolved_total": 2,
+  "resolved_fixed": 2,
   "resolved_disposition": 0,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 3
+      "count": 2
     }
   ],
   "resolved_by_priority": [
-    {
-      "label": "2. Critical",
-      "count": 1
-    },
     {
       "label": "3. Major",
       "count": 1
