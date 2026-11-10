@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T04:10:00Z",
+  "generated_at": "2026-11-10T04:26:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 229,
-    "incoming": 7,
-    "resolved": 2,
-    "pct": 2.1,
-    "to_go": 30,
+    "open": 234,
+    "incoming": 14,
+    "resolved": 5,
+    "pct": 0.0,
+    "to_go": 35,
     "tone": "red"
   },
   "teams": [
@@ -21,24 +21,24 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 159,
-      "incoming": 2,
-      "resolved": 0,
-      "pct": 3.0,
-      "to_go": 20,
-      "status": "20 to go",
+      "open": 158,
+      "incoming": 3,
+      "resolved": 2,
+      "pct": 3.7,
+      "to_go": 19,
+      "status": "19 to go",
       "tone": "red"
     },
     {
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 58,
-      "incoming": 5,
+      "open": 64,
+      "incoming": 11,
       "resolved": 1,
-      "pct": 1.7,
-      "to_go": 8,
-      "status": "8 to go",
+      "pct": -8.5,
+      "to_go": 14,
+      "status": "14 to go",
       "tone": "red"
     },
     {
@@ -59,26 +59,30 @@
       "target": 10,
       "open": 13,
       "incoming": 0,
-      "resolved": 1,
+      "resolved": 2,
       "pct": -8.3,
       "to_go": 3,
       "status": "3 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 2,
-  "resolved_fixed": 2,
+  "resolved_total": 5,
+  "resolved_fixed": 5,
   "resolved_disposition": 0,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 2
+      "count": 5
     }
   ],
   "resolved_by_priority": [
     {
+      "label": "2. Critical",
+      "count": 2
+    },
+    {
       "label": "3. Major",
-      "count": 1
+      "count": 2
     },
     {
       "label": "4. Minor",
