@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T04:45:00Z",
+  "generated_at": "2026-11-12T06:20:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 233,
-    "incoming": 14,
+    "open": 228,
+    "incoming": 13,
     "resolved": 6,
-    "pct": 0.4,
-    "to_go": 34,
+    "pct": 2.6,
+    "to_go": 29,
     "tone": "red"
   },
   "teams": [
@@ -21,12 +21,12 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 158,
-      "incoming": 3,
-      "resolved": 2,
-      "pct": 3.7,
-      "to_go": 19,
-      "status": "19 to go",
+      "open": 153,
+      "incoming": 2,
+      "resolved": 1,
+      "pct": 6.7,
+      "to_go": 14,
+      "status": "14 to go",
       "tone": "red"
     },
     {
@@ -59,7 +59,7 @@
       "target": 10,
       "open": 15,
       "incoming": 1,
-      "resolved": 3,
+      "resolved": 5,
       "pct": -25.0,
       "to_go": 5,
       "status": "5 to go",
@@ -77,16 +77,20 @@
   ],
   "resolved_by_priority": [
     {
+      "label": "1. Blocker",
+      "count": 1
+    },
+    {
       "label": "2. Critical",
-      "count": 2
+      "count": 1
     },
     {
       "label": "3. Major",
-      "count": 3
+      "count": 2
     },
     {
       "label": "4. Minor",
-      "count": 1
+      "count": 2
     }
   ]
 }
