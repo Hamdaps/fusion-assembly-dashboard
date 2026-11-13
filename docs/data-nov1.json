@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T06:20:00Z",
+  "generated_at": "2026-11-13T04:50:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 228,
-    "incoming": 13,
-    "resolved": 6,
-    "pct": 2.6,
-    "to_go": 29,
+    "open": 218,
+    "incoming": 15,
+    "resolved": 4,
+    "pct": 6.8,
+    "to_go": 19,
     "tone": "red"
   },
   "teams": [
@@ -21,24 +21,24 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 153,
-      "incoming": 2,
-      "resolved": 1,
-      "pct": 6.7,
-      "to_go": 14,
-      "status": "14 to go",
+      "open": 144,
+      "incoming": 3,
+      "resolved": 0,
+      "pct": 12.2,
+      "to_go": 5,
+      "status": "5 to go",
       "tone": "red"
     },
     {
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 63,
-      "incoming": 10,
-      "resolved": 1,
-      "pct": -6.8,
-      "to_go": 13,
-      "status": "13 to go",
+      "open": 62,
+      "incoming": 11,
+      "resolved": 0,
+      "pct": -5.1,
+      "to_go": 12,
+      "status": "12 to go",
       "tone": "red"
     },
     {
@@ -57,22 +57,22 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 15,
+      "open": 14,
       "incoming": 1,
-      "resolved": 5,
-      "pct": -25.0,
-      "to_go": 5,
-      "status": "5 to go",
+      "resolved": 4,
+      "pct": -16.7,
+      "to_go": 4,
+      "status": "4 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 6,
-  "resolved_fixed": 6,
+  "resolved_total": 4,
+  "resolved_fixed": 4,
   "resolved_disposition": 0,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 6
+      "count": 4
     }
   ],
   "resolved_by_priority": [
@@ -81,16 +81,12 @@
       "count": 1
     },
     {
-      "label": "2. Critical",
-      "count": 1
-    },
-    {
       "label": "3. Major",
       "count": 2
     },
     {
       "label": "4. Minor",
-      "count": 2
+      "count": 1
     }
   ]
 }
