@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T04:25:00Z",
+  "generated_at": "2026-11-16T04:56:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 212,
-    "incoming": 15,
-    "resolved": 0,
-    "pct": 9.4,
-    "to_go": 13,
+    "open": 214,
+    "incoming": 22,
+    "resolved": 37,
+    "pct": 8.5,
+    "to_go": 15,
     "tone": "red"
   },
   "teams": [
@@ -22,8 +22,8 @@
       "baseline": 164,
       "target": 139,
       "open": 143,
-      "incoming": 5,
-      "resolved": 0,
+      "incoming": 6,
+      "resolved": 21,
       "pct": 12.8,
       "to_go": 4,
       "status": "4 to go",
@@ -33,12 +33,12 @@
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 61,
-      "incoming": 10,
-      "resolved": 0,
-      "pct": -3.4,
-      "to_go": 11,
-      "status": "11 to go",
+      "open": 62,
+      "incoming": 12,
+      "resolved": 7,
+      "pct": -5.1,
+      "to_go": 12,
+      "status": "12 to go",
       "tone": "red"
     },
     {
@@ -46,8 +46,8 @@
       "baseline": 0,
       "target": 0,
       "open": 0,
-      "incoming": 0,
-      "resolved": 0,
+      "incoming": 1,
+      "resolved": 1,
       "pct": 100.0,
       "to_go": 0,
       "status": "Target met",
@@ -57,18 +57,64 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 10,
-      "incoming": 1,
-      "resolved": 0,
-      "pct": 16.7,
-      "to_go": 0,
-      "status": "Past target",
-      "tone": "green"
+      "open": 11,
+      "incoming": 3,
+      "resolved": 9,
+      "pct": 8.3,
+      "to_go": 1,
+      "status": "1 to go",
+      "tone": "red"
     }
   ],
-  "resolved_total": 0,
-  "resolved_fixed": 0,
-  "resolved_disposition": 0,
-  "resolved_by_resolution": [],
-  "resolved_by_priority": []
+  "resolved_total": 37,
+  "resolved_fixed": 18,
+  "resolved_disposition": 19,
+  "resolved_by_resolution": [
+    {
+      "label": "Fixed",
+      "count": 18
+    },
+    {
+      "label": "Won't Fix",
+      "count": 10
+    },
+    {
+      "label": "By Design",
+      "count": 4
+    },
+    {
+      "label": "Cannot Reproduce",
+      "count": 2
+    },
+    {
+      "label": "Duplicate",
+      "count": 1
+    },
+    {
+      "label": "External Dependency",
+      "count": 1
+    },
+    {
+      "label": "More info",
+      "count": 1
+    }
+  ],
+  "resolved_by_priority": [
+    {
+      "label": "1. Blocker",
+      "count": 1
+    },
+    {
+      "label": "2. Critical",
+      "count": 6
+    },
+    {
+      "label": "3. Major",
+      "count": 23
+    },
+    {
+      "label": "4. Minor",
+      "count": 7
+    }
+  ]
 }
