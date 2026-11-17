@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T04:56:00Z",
+  "generated_at": "2026-11-17T05:50:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,36 +9,36 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 214,
-    "incoming": 22,
-    "resolved": 37,
-    "pct": 8.5,
-    "to_go": 15,
-    "tone": "red"
+    "open": 204,
+    "incoming": 25,
+    "resolved": 50,
+    "pct": 12.8,
+    "to_go": 5,
+    "tone": "yellow"
   },
   "teams": [
     {
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 143,
-      "incoming": 6,
-      "resolved": 21,
-      "pct": 12.8,
-      "to_go": 4,
-      "status": "4 to go",
-      "tone": "red"
+      "open": 133,
+      "incoming": 8,
+      "resolved": 33,
+      "pct": 18.9,
+      "to_go": -6,
+      "status": "Past target",
+      "tone": "green"
     },
     {
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 62,
+      "open": 61,
       "incoming": 12,
-      "resolved": 7,
-      "pct": -5.1,
-      "to_go": 12,
-      "status": "12 to go",
+      "resolved": 8,
+      "pct": -3.4,
+      "to_go": 11,
+      "status": "11 to go",
       "tone": "red"
     },
     {
@@ -57,37 +57,41 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 11,
-      "incoming": 3,
+      "open": 12,
+      "incoming": 4,
       "resolved": 9,
-      "pct": 8.3,
-      "to_go": 1,
-      "status": "1 to go",
+      "pct": 0.0,
+      "to_go": 2,
+      "status": "2 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 37,
-  "resolved_fixed": 18,
-  "resolved_disposition": 19,
+  "resolved_total": 50,
+  "resolved_fixed": 20,
+  "resolved_disposition": 30,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 18
+      "count": 19
     },
     {
       "label": "Won't Fix",
-      "count": 10
-    },
-    {
-      "label": "By Design",
-      "count": 4
+      "count": 13
     },
     {
       "label": "Cannot Reproduce",
-      "count": 2
+      "count": 8
+    },
+    {
+      "label": "By Design",
+      "count": 5
     },
     {
       "label": "Duplicate",
+      "count": 2
+    },
+    {
+      "label": "Data Fixed",
       "count": 1
     },
     {
@@ -106,15 +110,15 @@
     },
     {
       "label": "2. Critical",
-      "count": 6
+      "count": 8
     },
     {
       "label": "3. Major",
-      "count": 23
+      "count": 32
     },
     {
       "label": "4. Minor",
-      "count": 7
+      "count": 9
     }
   ]
 }
