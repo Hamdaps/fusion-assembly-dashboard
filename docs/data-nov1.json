@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T05:50:00Z",
+  "generated_at": "2026-11-18T03:59:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,23 +9,23 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 204,
+    "open": 187,
     "incoming": 25,
-    "resolved": 50,
-    "pct": 12.8,
-    "to_go": 5,
-    "tone": "yellow"
+    "resolved": 70,
+    "pct": 20.1,
+    "to_go": -12,
+    "tone": "green"
   },
   "teams": [
     {
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 133,
+      "open": 121,
       "incoming": 8,
-      "resolved": 33,
-      "pct": 18.9,
-      "to_go": -6,
+      "resolved": 45,
+      "pct": 26.2,
+      "to_go": -18,
       "status": "Past target",
       "tone": "green"
     },
@@ -33,12 +33,12 @@
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 61,
+      "open": 56,
       "incoming": 12,
-      "resolved": 8,
-      "pct": -3.4,
-      "to_go": 11,
-      "status": "11 to go",
+      "resolved": 15,
+      "pct": 5.1,
+      "to_go": 6,
+      "status": "6 to go",
       "tone": "red"
     },
     {
@@ -59,28 +59,28 @@
       "target": 10,
       "open": 12,
       "incoming": 4,
-      "resolved": 9,
+      "resolved": 10,
       "pct": 0.0,
       "to_go": 2,
       "status": "2 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 50,
-  "resolved_fixed": 20,
-  "resolved_disposition": 30,
+  "resolved_total": 70,
+  "resolved_fixed": 25,
+  "resolved_disposition": 45,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
+      "count": 24
+    },
+    {
+      "label": "Cannot Reproduce",
       "count": 19
     },
     {
       "label": "Won't Fix",
-      "count": 13
-    },
-    {
-      "label": "Cannot Reproduce",
-      "count": 8
+      "count": 17
     },
     {
       "label": "By Design",
@@ -110,15 +110,19 @@
     },
     {
       "label": "2. Critical",
-      "count": 8
+      "count": 9
     },
     {
       "label": "3. Major",
-      "count": 32
+      "count": 44
     },
     {
       "label": "4. Minor",
-      "count": 9
+      "count": 14
+    },
+    {
+      "label": "6. None",
+      "count": 2
     }
   ]
 }
