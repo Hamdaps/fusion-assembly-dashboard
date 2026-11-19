@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T03:59:00Z",
+  "generated_at": "2026-11-19T06:18:00Z",
   "baseline_date": "2026-11-01",
   "baseline_label": "Nov 1, 2026",
   "reduction_target_pct": 15,
@@ -9,11 +9,11 @@
   "totals": {
     "baseline": 234,
     "target": 199,
-    "open": 187,
-    "incoming": 25,
-    "resolved": 70,
-    "pct": 20.1,
-    "to_go": -12,
+    "open": 188,
+    "incoming": 29,
+    "resolved": 76,
+    "pct": 19.7,
+    "to_go": -11,
     "tone": "green"
   },
   "teams": [
@@ -21,11 +21,11 @@
       "name": "Ebony",
       "baseline": 164,
       "target": 139,
-      "open": 121,
+      "open": 122,
       "incoming": 8,
-      "resolved": 45,
-      "pct": 26.2,
-      "to_go": -18,
+      "resolved": 47,
+      "pct": 25.6,
+      "to_go": -17,
       "status": "Past target",
       "tone": "green"
     },
@@ -33,12 +33,12 @@
       "name": "Pearl",
       "baseline": 59,
       "target": 50,
-      "open": 56,
-      "incoming": 12,
-      "resolved": 15,
-      "pct": 5.1,
-      "to_go": 6,
-      "status": "6 to go",
+      "open": 57,
+      "incoming": 15,
+      "resolved": 18,
+      "pct": 3.4,
+      "to_go": 7,
+      "status": "7 to go",
       "tone": "red"
     },
     {
@@ -57,22 +57,22 @@
       "name": "Riva",
       "baseline": 12,
       "target": 10,
-      "open": 12,
-      "incoming": 4,
-      "resolved": 10,
-      "pct": 0.0,
-      "to_go": 2,
-      "status": "2 to go",
+      "open": 11,
+      "incoming": 5,
+      "resolved": 11,
+      "pct": 8.3,
+      "to_go": 1,
+      "status": "1 to go",
       "tone": "red"
     }
   ],
-  "resolved_total": 70,
-  "resolved_fixed": 25,
-  "resolved_disposition": 45,
+  "resolved_total": 76,
+  "resolved_fixed": 28,
+  "resolved_disposition": 48,
   "resolved_by_resolution": [
     {
       "label": "Fixed",
-      "count": 24
+      "count": 27
     },
     {
       "label": "Cannot Reproduce",
@@ -84,11 +84,11 @@
     },
     {
       "label": "By Design",
-      "count": 5
+      "count": 6
     },
     {
       "label": "Duplicate",
-      "count": 2
+      "count": 4
     },
     {
       "label": "Data Fixed",
@@ -110,11 +110,11 @@
     },
     {
       "label": "2. Critical",
-      "count": 9
+      "count": 13
     },
     {
       "label": "3. Major",
-      "count": 44
+      "count": 46
     },
     {
       "label": "4. Minor",
